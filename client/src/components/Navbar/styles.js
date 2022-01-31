@@ -10,27 +10,46 @@ export default makeStyles((theme) => ({
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: '10px 50px',
+    [theme.breakpoints.down('sm')]: {
+      flexDirection: 'column',
+    },
   },
   heading: {
-    color: 'rgba(255,0,0,1)',
+    color: theme.palette.error.dark,
     textDecoration: 'none',
+    fontSize: '2.5em',
+    fontWeight: 300,
   },
   image: {
     marginLeft: '15px',
+    marginTop: '10px',
   },
   toolbar: {
     display: 'flex',
     justifyContent: 'flex-end',
     width: '400px',
+    [theme.breakpoints.down('sm')]: {
+      width: 'auto',
+    },
   },
   profile: {
     display: 'flex',
     justifyContent: 'space-between',
     width: '400px',
+    alignItems: 'center',
+    [theme.breakpoints.down('sm')]: {
+      width: 'auto',
+      marginTop: 20,
+      justifyContent: 'center',
+    },
+  },
+  logout: {
+    marginLeft: '20px',
   },
   userName: {
     display: 'flex',
     alignItems: 'center',
+    textAlign: 'center',
   },
   brandContainer: {
     display: 'flex',

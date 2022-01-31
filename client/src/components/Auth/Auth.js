@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Avatar, Button, Paper, Grid, Typography, Container} from '@material-ui/core';
 import { GoogleLogin } from 'react-google-login';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -6,7 +6,7 @@ import useStyles from './styles';
 import { useDispatch } from 'react-redux';
 import Input from './Input';
 import Icon from './icon';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { signin, signup } from '../../actions/auth';
 
 const initialState = {firstName: '', lastName: '', email: '', password: '', confirmPassword: ''}
@@ -18,6 +18,7 @@ const Auth = () => {
     const [formData, setFormData] = useState(initialState);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const location = useLocation();
 
     const handleShowPassword = () => setShowPassword((prevShowPassword) => !prevShowPassword);
 
@@ -53,10 +54,16 @@ const Auth = () => {
         }
     }
 
-
     const googleFailure = () => {
         console.log("Google Sign In was unsuccessful. Try again later!");
     }
+
+    useEffect(() => {
+        const user = JSON.parse(localStorage.getItem('profile'));
+        if(user){
+            navigate("/posts");
+        }
+    }, [location])
 
     return (
         <Container component="main" maxWidth="xs">

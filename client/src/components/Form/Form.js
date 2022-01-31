@@ -7,7 +7,7 @@ import { createPost, updatePost } from '../../actions/posts';
 
 const Form = ({ currentId, setCurrentId }) => {
     const classes = useStyles();
-    const post = useSelector((state) => currentId ? state.posts.find((p) => p._id === currentId) : null);
+    const post = useSelector((state) => currentId ? state.posts.posts.find((p) => p._id === currentId) : null);
     const dispatch = useDispatch();
     const [postData, setPostData] = useState({ title: '', recipe: '', tags: '', selectedFile: ''});
     const user = JSON.parse(localStorage.getItem('profile'));
@@ -43,7 +43,7 @@ const Form = ({ currentId, setCurrentId }) => {
     }
 
     return (
-        <Paper className={classes.paper}>
+        <Paper className={classes.paper} elevation={6}>
             <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
                 <Typography variant='h6'>{currentId ? 'Editing' : 'Creating'} a Recipe</Typography>
                 <TextField 
